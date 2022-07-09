@@ -31,7 +31,7 @@ const TodayWeather = (props) => {
                         {
                         
                                     
-                        scale?converter(props.weather[0].Temperature.Imperial.Value):(props.weather[0].Temperature.Imperial.Value)}<sup>o</sup>
+                        scale?converter(props.weather[0].Temperature.Imperial.Value):(props.weather[0].Temperature.Imperial.Value)}{scale?'F':<sup>o</sup>}
                     </Typography>
                     <Typography variant="body2">
                         {props.weather[0].WeatherText}

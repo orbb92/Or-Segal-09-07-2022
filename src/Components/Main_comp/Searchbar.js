@@ -24,15 +24,8 @@ const Searchbar = () => {
         //READY
 
         console.log(e.target.value)
-        
-            const res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${e.target.value}`).catch(e=>{ toast.error(e.message+', exceeded 50 requests', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                });})
+        try{
+            const res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${e.target.value}`)
 
             if (e.target.value === '')
 
@@ -40,7 +33,19 @@ const Searchbar = () => {
             else
 
                 setData(res.data)
-        
+        }
+        catch(e){
+
+
+           toast.error(e.message+', exceeded 50 requests', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }
 
        
     }
