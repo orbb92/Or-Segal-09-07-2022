@@ -60,14 +60,14 @@ export const weatherSlice = createSlice({
 
 export const setWeatherAsync = createAsyncThunk('setWeather', async (key) => {
  
-  const res = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`).catch(e=>console.log(e))
+  const res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`).catch(e=>console.log(e))
   
  return res.data
 })
 
 export const setForecastAsync = createAsyncThunk('setForecast', async (key) => {
 
-  const res = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${process.env.REACT_APP_API_KEY}`)
+  const res = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${process.env.REACT_APP_API_KEY}`)
    return res.data
  
 })
