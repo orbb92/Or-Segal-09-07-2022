@@ -6,14 +6,14 @@ const Toggle = () => {
     return (
         <><div style ={{position:'absolute',right:'0',height:'100%',alignItems:'center',display:'flex',fontWeight:'bold'}}>
             <span style={{paddingRight:'10px'}}>F/C</span>
-            <label class="switch">
+            <label className="switch">
             
                 <input type="checkbox"  onChange={e=>{
                     
                     dispath(toggle())
                 }}></input>
 
-                <span class="slider round" style={{color:'black'}}>  </span>
+                <span className="slider round" style={{color:'black'}}>  </span>
                 asd
             </label>
             
