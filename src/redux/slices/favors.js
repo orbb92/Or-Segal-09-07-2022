@@ -11,7 +11,6 @@ export const foavorSlice = createSlice({
 
 
         addFavor: (state, action) => {
-            console.log(action.payload)
             state.Favorites.push(action.payload)
            
             

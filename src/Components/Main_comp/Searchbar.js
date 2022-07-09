@@ -9,163 +9,7 @@ import {  toast } from 'react-toastify';
 
 import _ from 'lodash'
 const Searchbar = () => {
-    const key = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hv7wlAJCzUSPZ1CZ3EyH0IlOkRBvaprR'
-
-    const autoCompleteURL = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hv7wlAJCzUSPZ1CZ3EyH0IlOkRBvaprR&q=kefar`
-
-    let check = [
-        {
-            "Version": 1,
-            "Key": "212472",
-            "Type": "City",
-            "Rank": 45,
-            "LocalizedName": "Kefar Sava",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "215643",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar HaRif",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "D",
-                "LocalizedName": "Southern District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "213147",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Glickson",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "HA",
-                "LocalizedName": "Haifa"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212533",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Bilu",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212534",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Bin Nun",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212535",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Daniyyel",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212536",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar HaRo'e",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212538",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Malal",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "212539",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar Marmorek",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "M",
-                "LocalizedName": "Central District"
-            }
-        },
-        {
-            "Version": 1,
-            "Key": "215844",
-            "Type": "City",
-            "Rank": 75,
-            "LocalizedName": "Kefar HaYaroq",
-            "Country": {
-                "ID": "IL",
-                "LocalizedName": "Israel"
-            },
-            "AdministrativeArea": {
-                "ID": "TA",
-                "LocalizedName": "Tel Aviv"
-            }
-        }
-    ]
-
+   
 
 
 
@@ -180,8 +24,15 @@ const Searchbar = () => {
         //READY
 
         console.log(e.target.value)
-        try {
-            const res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${e.target.value}`)
+        
+            const res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${e.target.value}`).catch(e=>{ toast.error(e.message+', exceeded 50 requests', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                });})
 
             if (e.target.value === '')
 
@@ -189,18 +40,8 @@ const Searchbar = () => {
             else
 
                 setData(res.data)
-        }
-        catch(e){
-            toast.error(e.message+', exceeded 50 requests', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }
-//setData(check)
+        
+
        
     }
 
