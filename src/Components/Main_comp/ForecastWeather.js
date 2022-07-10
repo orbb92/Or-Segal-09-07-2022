@@ -27,9 +27,9 @@ const ForecastWeather = (props)=>{
   const scale = useSelector(state => state.scale.mode)
 
     return (
-       <div style={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',height:'100%',alignItems:'center'}}>
+       <div style={{display:'flex',flexWrap:'wrap',height:'100%',alignItems:'center'}}>
         { props.forecast?.DailyForecasts?.map((f,i)=>{
-            return <div key={i} style={{padding:'20px'}}><Card sx={{ minWidth:200,minHeight:350}}>
+            return <div key={i} style={{flex:'1 0 15%',height:'45%',padding:'20px'}}><Card sx={{width:'100%',height:'100%'}}>
           
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -40,7 +40,6 @@ const ForecastWeather = (props)=>{
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {scale?props.converter(f.Temperature.Minimum.Value)+'-'+props.converter(f.Temperature.Maximum.Value):f.Temperature.Minimum.Value+'-'+f.Temperature.Maximum.Value}
-              {/* {f.Temperature.Minimum.Value}-{f.Temperature.Maximum.Value} */}
               </Typography>
             </CardContent>
           
