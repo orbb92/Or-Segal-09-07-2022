@@ -98,7 +98,7 @@ const Navigation = () => {
             component="a"
             href=""
             sx={{
-              mr: 2,
+              mr: 15,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
