@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoaction } from '../../redux/slices/location';
 import {  toast } from 'react-toastify';
+import PulseLoader from "react-spinners/PulseLoader";
 
 import _ from 'lodash'
 const Searchbar = () => {
@@ -19,6 +20,8 @@ const Searchbar = () => {
 
 
     ])
+    const [loading, setLoading] = React.useState(false)
+
 
     const getSearchData = async (e) => {
         //READY
@@ -53,11 +56,13 @@ const Searchbar = () => {
     const debounce = (func) => {
         let timer;
         return function (...args) {
+            setLoading(true)
             const context = this
             if (timer)
                 clearTimeout(timer)
             timer = (setTimeout(() => {
                 timer = null
+                setLoading(false)
                 func.apply(context, args)
             }, 500))
         }
@@ -65,7 +70,7 @@ const Searchbar = () => {
 
     const debounceSearch = React.useCallback(debounce(getSearchData), [])
     return (
-        <div style={{}}>
+        <div style={{display:'flex'}}>
             <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -87,6 +92,11 @@ const Searchbar = () => {
                     return <TextField {...params} label="Location" />
                 }}
             />
+             <PulseLoader size={'7'} color={'#1976d2'} cssOverride={{
+                
+                position:'fixed',
+                
+            }}  loading={loading}></PulseLoader>
         </div>
     )
 }
