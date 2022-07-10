@@ -14,7 +14,7 @@ const Toggle = () => {
                 }}></input>
 
                 <span className="slider round" style={{color:'black'}}>  </span>
-                asd
+                
             </label>
             
             </div>

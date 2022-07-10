@@ -23,7 +23,7 @@ const Favor = () => {
 
                     favorites.map(favor => {
 
-                        return <div style ={{cursor:'pointer'}} onClick={()=>{
+                        return <div style ={{cursor:'pointer',zIndex:1}} onClick={(e)=>{
                             dispath(setLoaction(favor.location))
                            navigate('/',{replace:true})
                         }}><TodayWeather location={favor.location} weather={favor.weather} favor={true} ></TodayWeather></div>

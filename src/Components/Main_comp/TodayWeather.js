@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteFavor, addFavor } from '../../redux/slices/favors';
 import { toast } from 'react-toastify';
 
+
 const TodayWeather = (props) => {
+
     const weather = props.weather
     const location = props.location
     const scale = useSelector(state => state.scale.mode)
@@ -37,11 +39,13 @@ const TodayWeather = (props) => {
                         {props.weather[0].WeatherText}
 
                     </Typography>
-                    {props.favor ? <Button onClick={() => {
+                    {props.favor ? <div ><Button style={{zIndex:5}} onClick={(e) => {
                         dispatch(deleteFavor(props.location.Key))
+                        e.stopPropagation()
+
                     }} size="small" color="primary">
                         Remove
-                    </Button> : <img style={{ display: exists }} onClick={() => {
+                    </Button> </div>: <img style={{ display: exists }} onClick={() => {
 
                         dispatch(addFavor({ weather, location }))
                         toast.success(`🦄 Added ${props.location.LocalizedName} to favorites`, {

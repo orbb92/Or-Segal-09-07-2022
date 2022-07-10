@@ -7,7 +7,8 @@ export const weatherSlice = createSlice({
   name: 'weather',
   initialState: {
     weather: [{ "LocalObservationDateTime": null, "WeatherText": null, "WeatherIcon": null, "HasPrecipitation": null, "PrecipitationType": null, "Temperature": { "Metric": {}, "Imperial": {} } }],
-    forecast: {}
+    forecast: {},
+    error:null
 
   },
   reducers: {
@@ -26,14 +27,8 @@ export const weatherSlice = createSlice({
       })
 
       .addCase(setWeatherAsync.rejected, (state, action) => {
-        toast.error('Couldnt retrive weather data', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          });
+     
+        state.error= 'Couldnt retrive weather data'
       })
 
       .addCase(setForecastAsync.fulfilled, (state, action) => {
@@ -42,15 +37,8 @@ export const weatherSlice = createSlice({
         state.forecast = action.payload;
       })
       .addCase(setForecastAsync.rejected, (state, action) => {
-        toast.error('Couldnt retrive forecast data', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          });
-        state.forecast = action.payload;
+      
+        state.error ='Couldnt retrive forecast data';
       });
 
 
@@ -60,7 +48,7 @@ export const weatherSlice = createSlice({
 
 export const setWeatherAsync = createAsyncThunk('setWeather', async (key) => {
  
-  const res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`).catch(e=>console.log(e))
+  const res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`)
   
  return res.data
 })
@@ -72,7 +60,6 @@ export const setForecastAsync = createAsyncThunk('setForecast', async (key) => {
  
 })
 
-// Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount, setWeather } = weatherSlice.actions
 
 export default weatherSlice.reducer
