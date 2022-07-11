@@ -4,6 +4,7 @@
 ## -Based on AccuWeather API
 ## -Responsive, mobile friendly
 ## -Scale toggle
+## -Debouncing for optimization
 ## -Deployed to Heroku
 
 ### `npm start`
